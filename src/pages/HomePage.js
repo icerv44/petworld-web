@@ -1,7 +1,14 @@
 import React from "react";
+import Header from "../components/layout/header/Header";
+import Promote from "../components/layout/promote/Promote";
 
 function HomePage() {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <Header />
+      <Promote />
+    </>
+  );
 }
 
 export default HomePage;
