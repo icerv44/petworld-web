@@ -1,6 +1,6 @@
 import React from "react";
 import DropDown from "./DropDown";
-import Login from "./Login";
+import Login from "./LoginHead";
 import Logo from "./Logo";
 
 function Header() {

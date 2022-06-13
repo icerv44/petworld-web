@@ -1,6 +1,6 @@
 import React from "react";
 
-function Login() {
+function LoginHead() {
   return (
     <>
       <div className="w-full ">
@@ -12,4 +12,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginHead;

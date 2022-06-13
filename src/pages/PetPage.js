@@ -1,7 +1,7 @@
 import React from "react";
 
-function AnimalPage() {
+function PetPage() {
   return <div>Animal</div>;
 }
 
-export default AnimalPage;
+export default PetPage;
