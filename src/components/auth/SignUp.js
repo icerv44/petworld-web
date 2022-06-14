@@ -1,9 +1,22 @@
-import React from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { ErrorContext } from "../../contexts/ErrorContext";
 
 function SignUp() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [emailOrPhone, setEmailOrPhone] = useState("");
+  const [firstNameTH, setFirstNameTH] = useState("");
+  const [lastNameTH, setLastNameTH] = useState("");
+  const [firstNameEN, setFirstNameEN] = useState("");
+  const [lastNameEN, setLastNameEN] = useState("");
+  const [gender, setGender] = useState("");
+  const [birthDate, setbirthDate] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [district, setDistrict] = useState("");
+  const [provice, setProvice] = useState("");
+  const [country, setCountry] = useState("");
+  const [zipCode, setZipCode] = useState("");
+
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -17,14 +30,12 @@ function SignUp() {
 
       // end validate
       await signUp({
-        firstName,
-        lastName,
-        emailOrPhone,
+        firstNameTH,
+        lastNameTH,
+        userName,
         password,
         confirmPassword,
       });
-
-      closeModal();
     } catch (err) {
       setError(err.response.data.message);
     }
@@ -38,23 +49,38 @@ function SignUp() {
       <div className=" flex-col flex-nowrap w-[700px] h-[800px] ml-[35%] ">
         {/* <LoginText /> */}
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col mt-[100px]">
-          <div class="mb-4">
-            {/* <label
+          <div class="mb-6">
+            <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
-              for="username"
+              for="firstName"
             >
-              Username
+              First Name
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker rounded-full"
+              className="form-control"
               type="text"
-              placeholder="Username"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            /> */}
+              placeholder="First name"
+              value={firstNameTH}
+              onChange={(e) => setFirstNameTH(e.target.value)}
+            />
+          </div>
+          <div class="mb-6">
+            <label
+              className="block text-grey-darker text-[24px] font-bold mb-2"
+              for="firstName"
+            >
+              First Name
+            </label>
+            <input
+              className="form-control"
+              type="text"
+              placeholder="First name"
+              value={lastNameTH}
+              onChange={(e) => setLastNameTH(e.target.value)}
+            />
           </div>
           <div className="mb-6">
-            {/* <label
+            <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
               for="password"
             >
@@ -66,8 +92,24 @@ function SignUp() {
               placeholder="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            /> */}
+            />
           </div>
+          <div className="mb-6">
+            <label
+              className="block text-grey-darker text-[24px] font-bold mb-2"
+              for="password"
+            >
+              Password
+            </label>
+            <input
+              className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 rounded-full"
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
           <div className="flex items-center justify-between">
             {/* <button
               className="bg-blue-400 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded text-[20px]"
