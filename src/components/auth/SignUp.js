@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ErrorContext } from "../../contexts/ErrorContext";
+import Datepicker from "flowbite-datepicker/Datepicker";
 
 function SignUp() {
   const [firstNameTH, setFirstNameTH] = useState("");
@@ -16,7 +17,7 @@ function SignUp() {
   const [country, setCountry] = useState("");
   const [zipCode, setZipCode] = useState("");
 
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -32,7 +33,17 @@ function SignUp() {
       await signUp({
         firstNameTH,
         lastNameTH,
-        userName,
+        firstNameEN,
+        lastNameEN,
+        gender,
+        birthDate,
+        phoneNumber,
+        address,
+        district,
+        provice,
+        country,
+        zipCode,
+        email,
         password,
         confirmPassword,
       });
@@ -52,14 +63,14 @@ function SignUp() {
           <div class="mb-6">
             <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
-              for="firstName"
+              for="firstNameTH"
             >
-              First Name
+              {`Fisrt Name(TH)`}
             </label>
             <input
-              className="form-control"
+              className="shadow appearance-none border border-red rounded input-md py-2 px-3 text-grey-darker mb-3 rounded-full"
               type="text"
-              placeholder="First name"
+              placeholder="Fisrt Name(TH)"
               value={firstNameTH}
               onChange={(e) => setFirstNameTH(e.target.value)}
             />
@@ -67,18 +78,123 @@ function SignUp() {
           <div class="mb-6">
             <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
-              for="firstName"
+              for="lastNameTH"
             >
-              First Name
+              {`Last Name(TH)`}
             </label>
             <input
-              className="form-control"
+              className="shadow appearance-none border border-red rounded input-md py-2 px-3 text-grey-darker mb-3 rounded-full"
+              type="text"
+              placeholder="Last Name(TH)"
+              value={lastNameTH}
+              onChange={(e) => setLastNameTH(e.target.value)}
+            />
+          </div>
+          <div class="mb-6">
+            <label
+              className="block text-grey-darker text-[24px] font-bold mb-2"
+              for="firstNameEN"
+            >
+              {`First Name(EN)`}
+            </label>
+            <input
+              className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 rounded-full"
+              type="text"
+              placeholder="First Name(EN)"
+              value={firstNameEN}
+              onChange={(e) => setFirstNameEN(e.target.value)}
+            />
+          </div>
+          <div class="mb-6">
+            <label
+              className="block text-grey-darker text-[24px] font-bold mb-2"
+              for="lastNameEN"
+            >
+              {`Last Name(EN)`}
+            </label>
+            <input
+              className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 rounded-full"
+              type="text"
+              placeholder="Last Name(EN)"
+              value={lastNameEN}
+              onChange={(e) => setLastNameEN(e.target.value)}
+            />
+          </div>
+          <div class="mb-6">
+            <label
+              className="block text-grey-darker text-[24px] font-bold mb-2"
+              for="gender"
+            >
+              {`gender`}
+            </label>
+            <select
+              class="w-full py-2 px-3 mb-3 shadow appearance-none border border-red rounded rounded-full"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+            >
+              <option disabled selected>
+                Gender
+              </option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>none</option>
+            </select>
+          </div>
+          <div className="mb-6">
+            <label
+              className="block text-grey-darker text-[24px] font-bold mb-2"
+              for="birthDate"
+            >
+              {`Birth Date`}
+            </label>
+            <div className="flex items-center justify-center">
+              <div
+                className="datepicker relative form-floating mb-3 xl:w-96"
+                data-mdb-toggle-button="false"
+              >
+                <input
+                  type="text"
+                  className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  placeholder="Select a date"
+                  data-mdb-toggle="datepicker"
+                />
+                <label for="floatingInput" className="text-gray-700">
+                  Select a date
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="mb-6">
+            <label
+              className="block text-grey-darker text-[24px] font-bold mb-2"
+              for="firstName"
+            >
+              {`Last Name(TH)`}
+            </label>
+            <input
+              className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 rounded-full"
               type="text"
               placeholder="First name"
               value={lastNameTH}
               onChange={(e) => setLastNameTH(e.target.value)}
             />
           </div>
+          <div class="mb-6">
+            <label
+              className="block text-grey-darker text-[24px] font-bold mb-2"
+              for="firstName"
+            >
+              {`Last Name(TH)`}
+            </label>
+            <input
+              className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 rounded-full"
+              type="text"
+              placeholder="First name"
+              value={lastNameTH}
+              onChange={(e) => setLastNameTH(e.target.value)}
+            />
+          </div>
+
           <div className="mb-6">
             <label
               className="block text-grey-darker text-[24px] font-bold mb-2"

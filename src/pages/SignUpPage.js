@@ -5,7 +5,7 @@ import SignUp from "../components/auth/SignUp";
 function SignUpPage() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <SignUp />
     </>
   );
