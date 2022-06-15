@@ -27,7 +27,7 @@ function SignUp() {
     try {
       e.preventDefault();
       // validate input first
-
+      let year;
       // end validate
       await signUp({
         firstNameTH,
