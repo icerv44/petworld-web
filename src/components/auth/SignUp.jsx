@@ -7,14 +7,14 @@ function SignUp() {
   const [lastNameTH, setLastNameTH] = useState("");
   const [firstNameEN, setFirstNameEN] = useState("");
   const [lastNameEN, setLastNameEN] = useState("");
-  const [gender, setGender] = useState("");
-  const [birthDate, setbirthDate] = useState("");
+  const [Gender, setGender] = useState("");
+  const [BirthDate, setbirthDate] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
-  const [district, setDistrict] = useState("");
-  const [provice, setProvice] = useState("");
-  const [country, setCountry] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  const [Address, setAddress] = useState("");
+  const [District, setDistrict] = useState("");
+  const [Province, setProvice] = useState("");
+  const [Country, setCountry] = useState("");
+  const [ZipCode, setZipCode] = useState("");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,28 +24,31 @@ function SignUp() {
   const { setError, setTrigger } = useContext(ErrorContext);
 
   const handleSubmitSignUp = async (e) => {
+    console.log("handleSubmitSignUp");
     try {
       e.preventDefault();
       // validate input first
 
       // end validate
       await signUp({
+        email,
+        password,
+        confirmPassword,
         firstNameTH,
         lastNameTH,
         firstNameEN,
         lastNameEN,
-        gender,
-        birthDate,
+        Gender,
+        BirthDate,
         phoneNumber,
-        address,
-        district,
-        provice,
-        country,
-        zipCode,
-        email,
-        password,
-        confirmPassword,
+        Address,
+        District,
+        Province,
+        Country,
+        ZipCode,
       });
+
+      console.log();
     } catch (err) {
       setError(err.response.data.message);
     }
@@ -59,7 +62,7 @@ function SignUp() {
       <div className=" flex-col flex-nowrap w-[700px] h-[800px] ml-[35%] ">
         {/* <LoginText /> */}
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex-wrap grid-cols-2 mt-[100px]">
-          <div className="flex justify-evenly  ">
+          <div className="flex just4ify-evenly  ">
             <div class="mb-6">
               <label
                 className="block text-grey-darker text-[24px] font-bold mb-2"
@@ -124,44 +127,50 @@ function SignUp() {
               />
             </div>
           </div>
-
-          {/* <div class="mb-6">
-            <label
-              className="block text-grey-darker text-[24px] font-bold mb-2"
-              for="gender"
-            >
-              {`gender`}
-            </label>
-            <select
-              className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-            >
-              <option disabled selected>
-                Gender
-              </option>
-              <option>Male</option>
-              <option>Female</option>
-              <option>none</option>
-            </select>
-          </div> */}
-
           <div className="flex justify-evenly  ">
             <div class="mb-6">
               <label
                 className="block text-grey-darker text-[24px] font-bold mb-2"
-                for="birthDate"
+                for="Gender"
+              >
+                {`Gender`}
+              </label>
+              <select
+                className="select-md shadow appearance-none border border-red rounded w-[300px] text-grey-darker mb-3 rounded-full"
+                value={Gender}
+                onChange={(e) => {
+                  setGender(e.target.value);
+                  // console.log("gender :" + e.target.value);
+                }}
+              >
+                <option disabled selected>
+                  Gender
+                </option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>None</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label
+                className="block text-grey-darker text-[24px] font-bold mb-2"
+                for="BirthDate"
               >
                 {`Birth Date`}
               </label>
               <input
                 className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
                 type="date"
-                placeholder="Birth Date"
-                value={birthDate}
+                placeholder="dd-mm-yyyy"
+                min="1900-01-01"
+                max="2050-12-31"
+                value={BirthDate}
                 onChange={(e) => setbirthDate(e.target.value)}
               />
             </div>
+          </div>
+
+          <div className="flex justify-evenly  ">
             <div class="mb-6">
               <label
                 className="block text-grey-darker text-[24px] font-bold mb-2"
@@ -177,14 +186,10 @@ function SignUp() {
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
-          </div>
-
-          <div className="flex justify-evenly  ">
-            {" "}
             <div class="mb-6">
               <label
                 className="block text-grey-darker text-[24px] font-bold mb-2"
-                for="address"
+                for="Address"
               >
                 {`Address`}
               </label>
@@ -192,14 +197,18 @@ function SignUp() {
                 className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
                 type="text"
                 placeholder="Address"
-                value={address}
+                value={Address}
                 onChange={(e) => setAddress(e.target.value)}
               />
             </div>
+          </div>
+
+          <div className="flex justify-evenly  ">
+            {" "}
             <div class="mb-6">
               <label
                 className="block text-grey-darker text-[24px] font-bold mb-2"
-                for="district"
+                for="District"
               >
                 {`District`}
               </label>
@@ -207,8 +216,23 @@ function SignUp() {
                 className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
                 type="text"
                 placeholder="District"
-                value={district}
+                value={District}
                 onChange={(e) => setDistrict(e.target.value)}
+              />
+            </div>
+            <div class="mb-6">
+              <label
+                className="block text-grey-darker text-[24px] font-bold mb-2"
+                for="Province"
+              >
+                {`Province`}
+              </label>
+              <input
+                className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
+                type="text"
+                placeholder="Province"
+                value={Province}
+                onChange={(e) => setProvice(e.target.value)}
               />
             </div>
           </div>
@@ -217,22 +241,7 @@ function SignUp() {
             <div class="mb-6">
               <label
                 className="block text-grey-darker text-[24px] font-bold mb-2"
-                for="provice"
-              >
-                {`Provice`}
-              </label>
-              <input
-                className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
-                type="text"
-                placeholder="provice"
-                value={provice}
-                onChange={(e) => setProvice(e.target.value)}
-              />
-            </div>
-            <div class="mb-6">
-              <label
-                className="block text-grey-darker text-[24px] font-bold mb-2"
-                for="country"
+                for="Country"
               >
                 {`Country`}
               </label>
@@ -240,28 +249,28 @@ function SignUp() {
                 className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
                 type="text"
                 placeholder="Country"
-                value={country}
+                value={Country}
                 onChange={(e) => setCountry(e.target.value)}
+              />
+            </div>
+            <div class="mb-6">
+              <label
+                className="block text-grey-darker text-[24px] font-bold mb-2"
+                for="ZipCode"
+              >
+                {`ZipCode`}
+              </label>
+              <input
+                className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
+                type="text"
+                placeholder="ZipCode"
+                value={ZipCode}
+                onChange={(e) => setZipCode(e.target.value)}
               />
             </div>
           </div>
 
-          <div class="mb-6">
-            <label
-              className="block text-grey-darker text-[24px] font-bold mb-2"
-              for="zipCode"
-            >
-              {`ZipCode`}
-            </label>
-            <input
-              className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 rounded-full"
-              type="text"
-              placeholder="ZipCode"
-              value={zipCode}
-              onChange={(e) => setZipCode(e.target.value)}
-            />
-          </div>
-          <div class="mb-6">
+          <div class="mb-6 ml-[10px]">
             <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
               for="email"
@@ -277,7 +286,7 @@ function SignUp() {
             />
           </div>
 
-          <div className="mb-6">
+          <div className="mb-6 ml-[10px]">
             <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
               for="password"
@@ -292,7 +301,7 @@ function SignUp() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-6 ml-[10px]">
             <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
               for="confirmPassword"
@@ -308,10 +317,10 @@ function SignUp() {
             />
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ml-[10px]">
             <button
               className="bg-blue-400 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded text-[20px]"
-              type="button"
+              type="submit"
               // onClick={handleSubmitLogin}
             >
               Submit

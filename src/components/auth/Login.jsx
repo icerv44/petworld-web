@@ -4,7 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { ErrorContext } from "../../contexts/ErrorContext";
 
 function Login() {
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { login } = useContext(AuthContext);
@@ -13,7 +13,7 @@ function Login() {
   const handleSubmitLogin = async (e) => {
     try {
       e.preventDefault();
-      await login(userName, password);
+      await login(email, password);
     } catch (err) {
       setError(err.response.data.message);
     }
@@ -33,14 +33,14 @@ function Login() {
                 className="block text-grey-darker text-[24px] font-bold mb-2"
                 for="username"
               >
-                Username
+                Email
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker rounded-full"
-                type="text"
-                placeholder="Username"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="mb-6">
@@ -61,7 +61,7 @@ function Login() {
             <div className="flex items-center justify-between">
               <button
                 className="bg-blue-400 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded text-[20px]"
-                type="button"
+                type="submit"
                 // onClick={handleSubmitLogin}
               >
                 เข้าสู่ระบบ

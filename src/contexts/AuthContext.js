@@ -37,8 +37,8 @@ function AuthContextProvider({ children }) {
     setUser(resMe.data.user);
   };
 
-  const login = async (userName, password) => {
-    const res = await axios.post("/auth/login", { userName, password });
+  const login = async (email, password) => {
+    const res = await axios.post("/auth/login", { email, password });
     setAccessToken(res.data.token);
     const resMe = await axios.get("/users/me");
     setUser(resMe.data.user);
