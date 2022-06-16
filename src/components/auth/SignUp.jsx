@@ -7,8 +7,13 @@ function SignUp() {
   const [lastNameTH, setLastNameTH] = useState("");
   const [firstNameEN, setFirstNameEN] = useState("");
   const [lastNameEN, setLastNameEN] = useState("");
+<<<<<<< HEAD:src/components/auth/SignUp.jsx
   const [Gender, setGender] = useState("");
   const [BirthDate, setbirthDate] = useState("");
+=======
+  //const [gender, setGender] = useState("");
+  const [birthDate, setbirthDate] = useState("");
+>>>>>>> e7ac1b0021462c12a1ad30cd16db9ca111a443f2:src/components/auth/SignUp.js
   const [phoneNumber, setPhoneNumber] = useState("");
   const [Address, setAddress] = useState("");
   const [District, setDistrict] = useState("");
@@ -28,7 +33,7 @@ function SignUp() {
     try {
       e.preventDefault();
       // validate input first
-
+      let year;
       // end validate
       await signUp({
         email,
@@ -38,8 +43,13 @@ function SignUp() {
         lastNameTH,
         firstNameEN,
         lastNameEN,
+<<<<<<< HEAD:src/components/auth/SignUp.jsx
         Gender,
         BirthDate,
+=======
+        gender: "",
+        birthDate,
+>>>>>>> e7ac1b0021462c12a1ad30cd16db9ca111a443f2:src/components/auth/SignUp.js
         phoneNumber,
         Address,
         District,
@@ -56,10 +66,10 @@ function SignUp() {
 
   return (
     <form
-      className="flex w-full h-[747px] bg-[#F8F8F8]"
+      className="flex w-full justify-evenly h-[747px] bg-[#F8F8F8]"
       onSubmit={handleSubmitSignUp}
     >
-      <div className=" flex-col flex-nowrap w-[700px] h-[800px] ml-[35%] ">
+      <div className=" flex-col  w-[700px] h-[800px] ">
         {/* <LoginText /> */}
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex-wrap grid-cols-2 mt-[100px]">
           <div className="flex just4ify-evenly  ">
@@ -269,8 +279,29 @@ function SignUp() {
               />
             </div>
           </div>
+<<<<<<< HEAD:src/components/auth/SignUp.jsx
 
           <div class="mb-6 ml-[10px]">
+=======
+          <div className="flex justify-left ml-[15px]  ">
+            <div class="mb-6">
+              <label
+                className="block text-grey-darker text-[24px] font-bold mb-2"
+                for="zipCode"
+              >
+                {`ZipCode`}
+              </label>
+              <input
+                className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
+                type="text"
+                placeholder="ZipCode"
+                value={zipCode}
+                onChange={(e) => setZipCode(e.target.value)}
+              />
+            </div>
+          </div>
+          <div class="mb-6 justify-left ml-[15px]">
+>>>>>>> e7ac1b0021462c12a1ad30cd16db9ca111a443f2:src/components/auth/SignUp.js
             <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
               for="email"
@@ -278,7 +309,7 @@ function SignUp() {
               {`Email`}
             </label>
             <input
-              className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 rounded-full"
+              className="shadow appearance-none border border-red rounded input-md w-[500px] text-grey-darker mb-3 rounded-full"
               type="text"
               placeholder="Email"
               value={email}
@@ -286,7 +317,11 @@ function SignUp() {
             />
           </div>
 
+<<<<<<< HEAD:src/components/auth/SignUp.jsx
           <div className="mb-6 ml-[10px]">
+=======
+          <div className="mb-6 justify-left ml-[15px]">
+>>>>>>> e7ac1b0021462c12a1ad30cd16db9ca111a443f2:src/components/auth/SignUp.js
             <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
               for="password"
@@ -294,14 +329,18 @@ function SignUp() {
               Password
             </label>
             <input
-              className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 rounded-full"
+              className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
               type="password"
               placeholder="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+<<<<<<< HEAD:src/components/auth/SignUp.jsx
           <div className="mb-6 ml-[10px]">
+=======
+          <div className="mb-6 justify-left ml-[15px]">
+>>>>>>> e7ac1b0021462c12a1ad30cd16db9ca111a443f2:src/components/auth/SignUp.js
             <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
               for="confirmPassword"
@@ -309,7 +348,7 @@ function SignUp() {
               Confirm Password
             </label>
             <input
-              className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 rounded-full"
+              className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
               type="password"
               placeholder="confirmPassword"
               value={confirmPassword}
