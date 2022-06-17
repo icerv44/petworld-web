@@ -4,11 +4,11 @@ import catCartoon from "../../assets/images/cartoon_1.jpg";
 function PetDistributorName() {
   return (
     <>
-      <div className="grid grid-rows-3 grid-flow-col gap-4 h-[60px] w-[235px] bg-[#ffff] rounded-lg">
+      <div className="grid grid-rows-3 grid-flow-col gap-4 h-[60px] w-[210px] bg-[#ffff] rounded-lg">
         <div className="row-span-3 ">
           <img className="w-[45px] h-[55px]" src={catCartoon} />
         </div>
-        <div className="col-span-2 text-bold  ">{`ร้าน PetShop 1 `}</div>
+        <div className="col-span-1 text-bold  ">{`ร้าน PetShop 1 `}</div>
         <div className="row-span-2 ">
           <div className="rating rating-xs ">
             <input

@@ -1,8 +1,9 @@
+import React from "react";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ErrorContext } from "../../contexts/ErrorContext";
 
-function SignUp() {
+function DistributorSignUp() {
   const [firstNameTH, setFirstNameTH] = useState("");
   const [lastNameTH, setLastNameTH] = useState("");
   const [firstNameEN, setFirstNameEN] = useState("");
@@ -17,10 +18,11 @@ function SignUp() {
   const [ZipCode, setZipCode] = useState("");
 
   const [email, setEmail] = useState("");
+  const [DistributorName, setDistributorName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { signUp } = useContext(AuthContext);
+  const { signUpDistributor } = useContext(AuthContext);
   const { setError, setTrigger } = useContext(ErrorContext);
 
   const handleSubmitSignUp = async (e) => {
@@ -30,8 +32,9 @@ function SignUp() {
       // validate input first
 
       // end validate
-      await signUp({
+      await signUpDistributor({
         email,
+        DistributorName,
         password,
         confirmPassword,
         firstNameTH,
@@ -62,8 +65,8 @@ function SignUp() {
       <div className=" flex-col  w-[700px] h-[800px] ">
         {/* <LoginText /> */}
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex-wrap grid-cols-2 mt-[100px]">
-          <div className="text-[36px] text-black ml-[120px] mb-[30px]">{`User SignUp`}</div>
-          <div className="flex just4ify-evenly  ">
+          <div className="text-[36px] text-black ml-[120px] mb-[30px]">{`Distributor SignUp`}</div>
+          <div className="flex justify-evenly  ">
             <div class="mb-6">
               <label
                 className="block text-grey-darker text-[24px] font-bold mb-2"
@@ -270,8 +273,8 @@ function SignUp() {
               />
             </div>
           </div>
-
-          <div class="mb-6 ml-[10px]">
+          <div className="flex justify-evenly  "></div>
+          <div class="mb-6">
             <label
               className="block text-grey-darker text-[24px] font-bold mb-2"
               for="email"
@@ -280,10 +283,25 @@ function SignUp() {
             </label>
             <input
               className="shadow appearance-none border border-red rounded input-md w-[500px] text-grey-darker mb-3 rounded-full"
-              type="text"
+              type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div class="mb-6 ">
+            <label
+              className="block text-grey-darker text-[24px] font-bold mb-2"
+              for="distributorName"
+            >
+              {`DistributorName`}
+            </label>
+            <input
+              className="shadow appearance-none border border-red rounded input-md w-[500px] text-grey-darker mb-3 rounded-full"
+              type="text"
+              placeholder="DistributorName"
+              value={DistributorName}
+              onChange={(e) => setDistributorName(e.target.value)}
             />
           </div>
 
@@ -333,4 +351,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default DistributorSignUp;

@@ -3,17 +3,17 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ErrorContext } from "../../contexts/ErrorContext";
 
-function Login() {
+function DistributorLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login } = useContext(AuthContext);
+  const { loginDistributor } = useContext(AuthContext);
   const { setError } = useContext(ErrorContext);
 
   const handleSubmitLogin = async (e) => {
     try {
       e.preventDefault();
-      await login(email, password);
+      await loginDistributor(email, password);
     } catch (err) {
       setError(err.response.data.message);
     }
@@ -28,7 +28,7 @@ function Login() {
         <div className=" flex-col flex-nowrap w-[700px] h-[800px] ml-[35%] ">
           {/* <LoginText /> */}
           <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col mt-[100px]">
-            <div className="text-[36px] text-black ml-[120px]">{`User Login`}</div>
+            <div className="text-[36px] text-black ml-[120px]">{`Distributor Login`}</div>
             <div class="mb-4">
               <label
                 className="block text-grey-darker text-[24px] font-bold mb-2"
@@ -81,4 +81,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default DistributorLogin;

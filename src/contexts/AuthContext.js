@@ -30,6 +30,12 @@ function AuthContextProvider({ children }) {
     fetchMe();
   }, []);
 
+  const signUpDistributor = async (input) => {
+    const res = await axios.post("/auth/signupDis", input);
+    setAccessToken(res.data.token);
+    const resMe = await axios.get("/users/me");
+    setUser(resMe.data.user);
+  };
   const signUp = async (input) => {
     const res = await axios.post("/auth/signup", input);
     setAccessToken(res.data.token);
@@ -41,6 +47,13 @@ function AuthContextProvider({ children }) {
     const res = await axios.post("/auth/login", { email, password });
     setAccessToken(res.data.token);
     const resMe = await axios.get("/users/me");
+    setUser(resMe.data.user);
+  };
+
+  const loginDistributor = async (email, password) => {
+    const res = await axios.post("/auth/loginDis", { email, password });
+    setAccessToken(res.data.token);
+    const resMe = await axios.get("/distributor/me");
     setUser(resMe.data.user);
   };
 

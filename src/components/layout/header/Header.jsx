@@ -9,6 +9,9 @@ function Header() {
       <div className="w-full h-[80px] max-w-screen-xl max-h-[100px] min-w-[390px] min-h-[58px] flex bg-[#735FE7] block">
         <Logo />
         <DropDown />
+        <div className="text-white text-[48px] font-bold w-[400px] absolute ml-[800px]">
+          {`Pet World`}
+        </div>
         <Login />
       </div>
 
