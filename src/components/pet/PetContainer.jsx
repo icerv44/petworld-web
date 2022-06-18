@@ -1,27 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PetCard from "./PetCard";
+import axios from "../../config/axios";
 
 function PetContainer() {
   const [animal, setAnimal] = useState([]);
 
-  const fetchData = async () => {
+  const fetchAnimal = async () => {
+    console.log("fetchAnimal");
     try {
-      await fetchUser(pathname);
-      setAnimal(res.data.animals);
+      const resAnimal = await axios.get("/animals");
+      setAnimal(resAnimal.data.animal);
+      console.log("animal : " + animal);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    fetchAnimal();
   }, []);
 
   return (
     <>
       <div className="flex flex-nowrap w-[1300px] h-[1200px] bg-[#F8F8F8] justify-center ml-[20%]">
-        {animal.map((el) => (
-          <PetCard key={el.id} animal={el} fetchData={fetchData} />
+        {animal.map((pet) => (
+          <PetCard key={pet.id} animal={pet} fetchData={fetchAnimal} />
         ))}
       </div>
     </>
