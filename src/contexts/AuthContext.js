@@ -17,12 +17,14 @@ function AuthContextProvider({ children }) {
     const fetchMe = async () => {
       try {
         const token = getAccessToken();
+
         if (token) {
-          const resMe = await axios.get("/users/me");
-          setUser(resMe.data.user);
+          const resMe = await axios.get("/distributor/me");
+          console.log("fetchMe token : ", resMe.data.distributor);
+          setUser(resMe.data.distributor);
         }
       } catch (err) {
-        removeAccessToken();
+        // removeAccessToken();
         navigate("/login");
       }
     };
@@ -32,15 +34,15 @@ function AuthContextProvider({ children }) {
 
   const signUpDistributor = async (input) => {
     const res = await axios.post("/auth/signupDis", input);
-    setAccessToken(res.data.token);
-    const resMe = await axios.get("/users/me");
-    setUser(resMe.data.user);
+    // setAccessToken(res.data.token);
+    // const resMe = await axios.get("/distributor/me");
+    // setUser(resMe.data.user);
   };
   const signUp = async (input) => {
     const res = await axios.post("/auth/signup", input);
-    setAccessToken(res.data.token);
-    const resMe = await axios.get("/users/me");
-    setUser(resMe.data.user);
+    // setAccessToken(res.data.token);
+    // const resMe = await axios.get("/users/me");
+    // setUser(resMe.data.user);
   };
 
   const login = async (email, password) => {
@@ -54,8 +56,15 @@ function AuthContextProvider({ children }) {
     const res = await axios.post("/auth/loginDis", { email, password });
     setAccessToken(res.data.token);
     const resMe = await axios.get("/distributor/me");
-    setUser(resMe.data.user);
+    console.log("Login Distribute : ", resMe.data.distributor);
+    setUser(resMe.data.distributor);
   };
+
+  // const createAnimal = async (input) => {
+  //   const res = await axios.post("/animals/createAnimal/", {
+  //     input,
+  //   });
+  // };
 
   const logout = () => {
     removeAccessToken();
@@ -71,6 +80,7 @@ function AuthContextProvider({ children }) {
         logout,
         loginDistributor,
         signUpDistributor,
+        // createAnimal,
       }}
     >
       {children}

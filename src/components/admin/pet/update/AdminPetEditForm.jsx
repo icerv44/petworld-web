@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../../../contexts/AuthContext";
 import { ErrorContext } from "../../../../contexts/ErrorContext";
 import axios from "../../../../config/axios";
 import { Routes, Route, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function AdminPetCreateForm() {
+function AdminPetEditForm() {
   const [category, setCategory] = useState("");
   const [breed, setBreed] = useState("");
   const [BirthDate, setBirthDate] = useState("");
@@ -15,24 +15,51 @@ function AdminPetCreateForm() {
   const [Price, setPrice] = useState("");
   const [Picture, setPicture] = useState([]);
   const [IsActive, setIsActive] = useState("1");
+  let { id } = useParams();
 
   const [ShippingPrice, setShippingPrice] = useState("");
   const [ShippingName, setShippingName] = useState("");
   const [distributorId, setDistributorId] = useState("");
+
+  const [animal, setAnimal] = useState([]);
 
   // const { createAnimal } = useContext(AuthContext);
   const { setError, setTrigger } = useContext(ErrorContext);
 
   const navigation = useNavigate();
 
-  const createAnimal = async (input) => {
-    console.log("input : ", input);
-    const res = await axios.post("/animals/createAnimal", input);
-    console.log("Res : ", res);
+  const updateAnimal = async (input) => {
+    const res = await axios.patch(`/animals/updateAnimal/${id}`, input);
   };
 
-  const handleSubmitCreate = async (e) => {
-    console.log("handleSubmitCreate");
+  useEffect(() => {
+    fetchAnimal();
+    // console.log("updateAnimal Effect: ", animal);
+  }, []);
+
+  const fetchAnimal = async () => {
+    try {
+      // console.log("fetchAnimal Edit : ", id);
+      // e.preventDefault();
+      const resAnimal = await axios.get(`/animals/${id}`);
+      setAnimal(resAnimal.data.animal);
+      setCategory(resAnimal.data.animal.category);
+      setTitle(resAnimal.data.animal.title);
+      setBreed(resAnimal.data.animal.breed);
+      setGender(resAnimal.data.animal.Gender);
+      setBirthDate(resAnimal.data.animal.BirthDate);
+      setPrice(resAnimal.data.animal.Price);
+      setShippingPrice(resAnimal.data.animal.ShippingPrice);
+      setShippingName(resAnimal.data.animal.ShippingName);
+      setDetail(resAnimal.data.animal.detail);
+      // console.log("animal fetchAnimal Edit axios : ", resAnimal);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmitEdit = async (e) => {
+    console.log("handleSubmitEdit");
     try {
       e.preventDefault();
       // validate input first
@@ -44,13 +71,14 @@ function AdminPetCreateForm() {
         Gender,
         title,
         detail,
+        IsActive,
         Price,
         ShippingPrice,
         ShippingName,
       });
 
       // end validate
-      await createAnimal({
+      await updateAnimal({
         category,
         breed,
         BirthDate,
@@ -61,17 +89,19 @@ function AdminPetCreateForm() {
         ShippingName,
         title,
         detail,
+        distributorId,
       });
-      alert("Create Success");
+      alert("Update Success");
       navigation(`/dislist`, { replace: true });
     } catch (err) {
-      alert("Create Fail");
+      alert("Update Fail");
       setError(err.response.data.message);
     }
   };
 
   return (
     <>
+      {console.log("Animal : ", title)}
       <div className=" flex-col  w-[500px] h-[800px] ">
         {/* <LoginText /> */}
 
@@ -218,7 +248,7 @@ function AdminPetCreateForm() {
               className="shadow appearance-none border border-red rounded input-md w-[300px] text-grey-darker mb-3 rounded-full"
               type="text"
               placeholder="ราคา (ตัวเลขเท่านั้น)"
-              value={ShippingName}
+              value={animal.ShippingName}
               onChange={(e) => setShippingName(e.target.value)}
             />
           </div> */}
@@ -226,7 +256,7 @@ function AdminPetCreateForm() {
 
         <button
           class="btn bg-[#735FE7] rounded-lg w-[120px] h-[30px]"
-          onClick={handleSubmitCreate}
+          onClick={handleSubmitEdit}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -249,4 +279,4 @@ function AdminPetCreateForm() {
   );
 }
 
-export default AdminPetCreateForm;
+export default AdminPetEditForm;

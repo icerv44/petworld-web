@@ -1,5 +1,6 @@
 import React from "react";
 import DropDown from "./DropDown";
+import LoginAdminHead from "./LoginAdminHead";
 import Login from "./LoginHead";
 import Logo from "./Logo";
 
@@ -13,6 +14,7 @@ function Header() {
           {`Pet World`}
         </div>
         <Login />
+        <LoginAdminHead />
       </div>
 
       {/* <div className="bg-green-800 w-auto flex flex-wrap">

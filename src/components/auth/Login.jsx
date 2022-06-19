@@ -2,8 +2,10 @@ import React, { useState, useContext } from "react";
 
 import { AuthContext } from "../../contexts/AuthContext";
 import { ErrorContext } from "../../contexts/ErrorContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigation = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,7 +16,10 @@ function Login() {
     try {
       e.preventDefault();
       await login(email, password);
+      navigation(`/pet`, { replace: true });
+      alert("Login Success");
     } catch (err) {
+      alert("Login Fail");
       setError(err.response.data.message);
     }
   };
@@ -23,7 +28,7 @@ function Login() {
     <>
       <form
         className="flex w-full h-[747px] bg-[#F8F8F8]"
-        onSubmit={handleSubmitLogin}
+        // onSubmit={handleSubmitLogin}
       >
         <div className=" flex-col flex-nowrap w-[700px] h-[800px] ml-[35%] ">
           {/* <LoginText /> */}
@@ -62,17 +67,26 @@ function Login() {
             <div className="flex items-center justify-between">
               <button
                 className="bg-blue-400 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded text-[20px]"
-                type="submit"
-                // onClick={handleSubmitLogin}
+                // type="submit"
+                onClick={handleSubmitLogin}
               >
                 เข้าสู่ระบบ
               </button>
-              <a
+
+              <button
+                className="bg-blue-400 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded text-[20px]"
+                onClick={() => {
+                  navigation(`/usigup`, { replace: true });
+                }}
+              >
+                SignUp
+              </button>
+              {/* <a
                 className="inline-block align-baseline font-bold text-[20px] text-blue-400 hover:text-blue-800"
                 href="#"
               >
                 Forgot Password?
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

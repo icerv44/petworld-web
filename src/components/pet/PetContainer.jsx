@@ -10,7 +10,7 @@ function PetContainer() {
     try {
       const resAnimal = await axios.get("/animals");
       setAnimal(resAnimal.data.animal);
-      console.log("animal : " + animal);
+      console.log("animal : ", resAnimal);
     } catch (err) {
       console.log(err);
     }
@@ -22,7 +22,11 @@ function PetContainer() {
 
   return (
     <>
-      <div className="flex flex-nowrap w-[1300px] h-[1200px] bg-[#F8F8F8] justify-center ml-[20%]">
+      <div className="text-[36px] font-bold ml-[50%] py-[30px]">
+        {" "}
+        {`Pet List`}
+      </div>
+      <div className="flex flex-wrap w-[1300px]  bg-[#F8F8F8] justify-between justify-start ml-[20%] px-[20px]">
         {animal.map((pet) => (
           <PetCard key={pet.id} animal={pet} fetchData={fetchAnimal} />
         ))}

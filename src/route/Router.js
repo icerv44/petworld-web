@@ -10,12 +10,13 @@ import DistributorCreateListPage from "../pages/DistributorCreateListPage";
 import DistributorLoginPage from "../pages/DistributorLoginPage";
 import DistributorSignUpPage from "../pages/DistributorSignUpPage";
 import DistributorCreatePage from "../pages/DistributorCreatePage";
+import DistributorEditPetPage from "../pages/DistributorEditPetPage";
 
 function Router() {
   const { user } = useContext(AuthContext);
   return (
     <Routes>
-      <Route path="" element={<HomePage />} />
+      <Route path="" element={<PetPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/usigup" element={<SignUpPage />} />
       <Route path="/pet" element={<PetPage />} />
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/dislogin" element={<DistributorLoginPage />} />
       <Route path="/dissignup" element={<DistributorSignUpPage />} />
       <Route path="/discreate" element={<DistributorCreatePage />} />
+      <Route path="/disedit/:id" element={<DistributorEditPetPage />} />
     </Routes>
   );
 }

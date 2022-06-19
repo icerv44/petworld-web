@@ -7,9 +7,10 @@ import PetPrice from "./PetPrice";
 function PetCard({ animal, fetchData }) {
   const { title, detail, category, breed, Gender, BirthDate, Price } = animal;
 
+  console.log("PetCard price : ", Price);
   return (
     <>
-      <div className="card w-[280px] h-[450px] bg-[#F7F5FF] shadow-xl ml-[40px]">
+      <div className="card w-[280px] h-[450px] bg-[#F7F5FF] shadow-xl  mt-[20px] mb-[30px] ">
         <figure>
           <img className="h-[181px] w-[280px]" src={cat12} alt="Shoes" />
         </figure>

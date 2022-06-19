@@ -1,6 +1,20 @@
-import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function AdminHeader() {
+  const { logout } = useContext(AuthContext);
+  const navigation = useNavigate();
+  const handleSubmitLogin = async (e) => {
+    try {
+      e.preventDefault();
+      await logout();
+      navigation(`/pet`, { replace: true });
+      alert("Logout");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <div class="navbar bg-base-100 bg-[#735FE7]">
@@ -23,6 +37,14 @@ function AdminHeader() {
         </div>
         <div class="flex-1 bg-[#735FE7]">
           <a class="btn btn-ghost normal-case text-xl ml-[100px] text-white">{`Distributor Header`}</a>
+        </div>
+        <div className="w-full ">
+          <button
+            className="bg-[#FEBF23] w-[100px] h-[35px] ml-[50px] mt-[10px] rounded-full ml-[1450px]"
+            onClick={handleSubmitLogin}
+          >
+            Logout
+          </button>
         </div>
         {/* <div class="flex-none">
           <button class="btn btn-square btn-ghost">

@@ -2,8 +2,10 @@ import React from "react";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ErrorContext } from "../../contexts/ErrorContext";
+import { useNavigate } from "react-router-dom";
 
 function DistributorSignUp() {
+  const navigation = useNavigate();
   const [firstNameTH, setFirstNameTH] = useState("");
   const [lastNameTH, setLastNameTH] = useState("");
   const [firstNameEN, setFirstNameEN] = useState("");
@@ -51,20 +53,22 @@ function DistributorSignUp() {
         ZipCode,
       });
 
-      console.log();
+      navigation(`/dislogin`, { replace: true });
+      alert("SignUp Success");
     } catch (err) {
+      alert("SignUp fail");
       setError(err.response.data.message);
     }
   };
 
   return (
     <form
-      className="flex w-full justify-evenly h-[747px] bg-[#F8F8F8]"
+      className="flex w-full justify-evenly  bg-[#F8F8F8]"
       onSubmit={handleSubmitSignUp}
     >
-      <div className=" flex-col  w-[700px] h-[800px] ">
+      <div className=" flex-col   w-[700px] ">
         {/* <LoginText /> */}
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex-wrap grid-cols-2 mt-[100px]">
+        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex-wrap grid-cols-2 mt-[100px]  mb-[100px]">
           <div className="text-[36px] text-black ml-[120px] mb-[30px]">{`Distributor SignUp`}</div>
           <div className="flex justify-evenly  ">
             <div class="mb-6">
@@ -340,7 +344,6 @@ function DistributorSignUp() {
             <button
               className="bg-blue-400 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded text-[20px]"
               type="submit"
-              // onClick={handleSubmitLogin}
             >
               Submit
             </button>

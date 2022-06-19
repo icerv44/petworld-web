@@ -4,7 +4,7 @@ function DropDown() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <div className="relative inline-block text-left pt-[20px]">
+      <div className="relative inline-block text-left pt-[20px] ml-[50px]">
         <button
           type="button"
           className="inline-flex justify-center w-[200px] h-[40px] rounded-md border-gray-300 shadow-sm 

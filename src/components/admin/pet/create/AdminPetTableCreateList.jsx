@@ -2,25 +2,49 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "../../../../config/axios";
+import Router from "../../../../route/Router";
+import { useNavigate } from "react-router-dom";
+
 function AdminPetTable() {
-  const [animal, setAnimal] = useState(null);
+  const [animal, setAnimal] = useState([]);
   const [id, setId] = useState(0);
+
+  const navigation = useNavigate();
 
   useEffect(() => {
     console.log("useEffect");
     fetchAnimal();
   }, []);
 
-  const fetchAnimal = async () => {
+  const fetchAnimal = async (e) => {
     console.log("fetchAnimal");
     try {
-      const resAnimal = await axios.get("/animals/1");
+      // e.preventDefault();
+      const resAnimal = await axios.get("/animals");
       setAnimal(resAnimal.data.animal);
-      console.log("animal : " + animal);
+      console.log("animal fetchAnimal : " + animal);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const deleteAnimal = async (id) => {
+    try {
+      const deleteAni = await axios.delete(`/animals/deleteAnimal/${id}`);
+      fetchAnimal();
+      // window.location.reload();
+      // navigation(`/dislist`, { replace: true });
+      alert("Delete Success");
+    } catch (err) {
+      alert("Delete Unsuccess");
+    }
+  };
+
+  // const handleEdit = (id) => {
+  //   history.push(`/disedit/${id}`);
+  // };
+
+  console.log("animal : " + animal);
   // const getAge = (bDate) => {
   //   let today = new Date();
   //   let birthDay = new Date(bDate);
@@ -85,7 +109,22 @@ function AdminPetTable() {
                 <td>{pet.Price}</td>
 
                 <th>
-                  <button className="btn btn-ghost btn-xs">แอคชั่น</button>
+                  <button
+                    className="btn btn-outline btn-primary btn-xs mr-[6px]"
+                    onClick={() => {
+                      navigation(`/disedit/${pet.id}`, { replace: true });
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-outline btn-primary btn-xs"
+                    onClick={() => {
+                      deleteAnimal(pet.id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </th>
               </tr>
             ))}

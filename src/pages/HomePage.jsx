@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../components/layout/Footer";
 import Header from "../components/layout/header/Header";
 import Promote from "../components/layout/promote/Promote";
 
@@ -7,6 +8,7 @@ function HomePage() {
     <>
       <Header />
       <Promote />
+      <Footer />
     </>
   );
 }

@@ -1,16 +1,16 @@
 import React from "react";
 import AdminHeader from "../components/admin/AdminHeader";
-import AdminPetCreateContainer from "../components/admin/pet/create/AdminPetCreateContainer";
+import AdminPetEditContainer from "../components/admin/pet/update/AdminPetEditContainer";
 import Footer from "../components/layout/Footer";
 
-function DistributorCreatePage() {
+function DistributorEditPetPage() {
   return (
     <>
       <AdminHeader />
-      <AdminPetCreateContainer />
+      <AdminPetEditContainer />
       <Footer />
     </>
   );
 }
 
-export default DistributorCreatePage;
+export default DistributorEditPetPage;
